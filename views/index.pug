@@ -14,12 +14,7 @@ html(lang="en")
 
       p: a.btn.btn-primary.btn-block.btn-xl(
         data-loading-text='Connecting...'
-        href='https://connect.stripe.com/oauth/authorize?response_type=code&client_id=' + config.clientId + '&scope=read_write'
+        href=redirectUri
         ) Connect to Stripe
 
     include partials/footer.pug
-
-    script(type='text/javascript').
-      $('.btn').on('click', function () {
-        var $btn = $(this).button('loading')
-      });

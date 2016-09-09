@@ -2,56 +2,52 @@
 
 var CONFIG = require('./config');
 
-var express = require('express');
-
-var app = express();
-
+var app = require('./lib/server');
 var stripe = require('stripe')(CONFIG.secretKey);
+var OAuth = require('client-oauth2');
 
-app.set('views', './views');
-app.set('view engine', 'pug');
-app.use(express.static('public'));
-
-var OAuthClient = require('client-oauth2');
-
-var oauth = new OAuthClient({
+// Configure the OAuth 2.0 Client
+var oauth = new OAuth({
     clientId: CONFIG.clientId,
     clientSecret: CONFIG.secretKey,
+
+    scopes: ['read_write'],
+
     redirectUri: CONFIG.redirectUri,
     authorizationUri: 'https://connect.stripe.com/oauth/authorize',
-    accessTokenUri: 'https://connect.stripe.com/oauth/token',
-    scopes: ['read_write']
+    accessTokenUri: 'https://connect.stripe.com/oauth/token'
 });
 
-// Get
+// Get the home page:
 app.get('/', function(req, res) {
     res.render('index', {
-        config: CONFIG
+        redirectUri: oauth.code.getUri()
     });
 });
 
+// Handle the redirect - this should match your CONFIG redirect's path:
 app.get('/connected', function(req, res) {
-    if (req.query.error) return renderError(res, req.query.error);
+    if (req.query.error) return response.render('connected', {
+        error: req.query.error
+    });
 
-    oauth.code.getToken(req.url)
-        .then(function(token) {
-            var accountId = token.data.stripe_user_id;
+    // Use the Authorization Code to get a Token
+    oauth.code.getToken(req.url).then(handleToken);
 
-            stripe.account.retrieve(accountId, function(error, account) {
-                res.render('connected', {
-                    error: error,
-                    account: account
-                });
-            });
+    // Go fetch the Account from the Token
+    function handleToken(token) {
+        stripe.account.retrieve(token.data.stripe_user_id, onAccount);
+    }
+
+    // Render the Account information
+    function onAccount(error, account) {
+        res.render('connected', {
+            error: error,
+            account: account
         });
+    }
 });
 
 app.listen(CONFIG.port, function() {
     console.log('Listening on port', CONFIG.port);
 });
-
-function renderError(response, error) {
-    response.render('connected', {
-        error: error
-    });
-}

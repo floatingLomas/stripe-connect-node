@@ -2,3 +2,8 @@ footer.footer
   .container
     p.text-muted.text-center.space-top
       a(href='https://stripe.com/docs/connect') View Stripe Connect docs
+
+  script(type='text/javascript').
+    $('.btn').on('click', function () {
+      var $btn = $(this).button('loading')
+    });
