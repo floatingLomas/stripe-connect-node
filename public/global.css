@@ -1,0 +1,38 @@
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+  background-color: #fafafa;
+}
+body > .container {
+  padding: 60px 15px 0;
+}
+.navbar-default {
+  background-color:#fff;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 60px;
+  background-color: #fff;
+}
+.space-top {
+  margin-top:20px;
+}
+dt {
+  color: #777;
+}
+.shadow-sm {
+  webkit-box-shadow: 0 2px 0 rgba(37,46,53,0.06);
+  -moz-box-shadow: 0 2px 0 rgba(37,46,53,0.06);
+  box-shadow: 0 2px 0 rgba(37,46,53,0.06);
+}
+.btn-xl {
+  font-size:28px;
+  padding:10px;
+  font-weight: 300;
+}

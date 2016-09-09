@@ -1,0 +1,25 @@
+doctype html
+html(lang="en")
+  include partials/head.pug
+
+  body
+    include partials/nav.pug
+
+    .container
+      .page-header: h1 A Simple Stripe Connect PHP example
+
+      p.lead This is a basic Stripe Connect example app built with Node.js, Express and an #[a( href="https://github.com/lelylan/simple-oauth2") OAuth 2.0 client].
+
+      p.lead This integration uses #[a(href="https://stripe.com/docs/connect/standalone-accounts") standalone accounts], so you can either create a new test account using #[a(href="https://stripe.com/docs/testing") some test data], or connect an existing account (in test mode).
+
+      p: a.btn.btn-primary.btn-block.btn-xl(
+        data-loading-text='Connecting...'
+        href='https://connect.stripe.com/oauth/authorize?response_type=code&client_id=' + config.clientId + '&scope=read_write'
+        ) Connect to Stripe
+
+    include partials/footer.pug
+
+    script(type='text/javascript').
+      $('.btn').on('click', function () {
+        var $btn = $(this).button('loading')
+      });

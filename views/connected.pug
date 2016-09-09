@@ -1,0 +1,56 @@
+doctype html
+html(lang="en")
+  include partials/head.pug
+
+  body
+    include partials/nav.pug
+
+    .container
+      if error
+        .alert.alert-danger: strong #{error.error}: #{error.error_description}
+      else
+        .alert.alert-success: strong Successfully connected your Account!
+
+      if account
+        h2.page-header About your account
+
+        .panel.panel-default.shadow-sm: .panel-body: .dl-horizontal
+          dt #[i.fa.fa-cc-stripe] Account ID
+          dd #{account.id}
+
+          dt #[i.fa.fa-envelope] Email
+          dd #{account.email}
+
+          dt #[i.fa.fa-briefcase] Business Name
+          dd #{account.business_name}
+
+          dt #[i.fa.fa-globe] Country
+          dd #{account.country}
+
+          dt #[i.fa.fa-envelope] Email
+          dd #{account.id}
+
+          dt #[i.fa.fa-usd] Default Currency
+          dd #{account.default_currency}
+
+          dt #[i.fa.fa-briefcase] Display Name
+          dd #{account.display_name}
+
+          dt #[i.fa.fa-file-text] Statement Descriptor
+          dd #{account.statement_descriptor}
+
+          dt #[i.fa.fa-question-circle] Charges Enabled
+          dd #{account.charges_enabled.toString()}
+
+          dt #[i.fa.fa-question-circle] Transfers Enabled
+          dd #{account.transfers_enabled.toString()}
+
+          dt #[i.fa.fa-link] Website
+          dd #{account.business_url}
+
+    include partials/footer.pug
+
+    script(type='text/javascript').
+      $('.btn').on('click', function () {
+        var $btn = $(this).button('loading');
+      });
