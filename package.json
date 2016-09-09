@@ -1,28 +1,28 @@
 {
-  "name": "stripe-connect-node",
-  "version": "0.0.1",
-  "description": "A simple Node.js Stripe Connect example using OAuth 2",
-  "private": true,
-  "scripts": {},
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/floatingLomas/stripe-connect-node.git"
-  },
-  "keywords": [
-    "stripe",
-    "stripe-connect",
-    "oauth"
-  ],
-  "author": "Jonathan Lomas <jonathan@floatinglomas.ca>",
-  "bugs": {
-    "url": "https://github.com/floatingLomas/stripe-connect-node/issues"
-  },
-  "homepage": "https://github.com/floatingLomas/stripe-connect-node",
-  "dependencies": {
-    "client-oauth2": "^2.2.0",
-    "express": "^4.14.0",
-    "pug": "^2.0.0-beta6",
-    "stripe": "^4.10.0"
-  },
-  "devDependencies": {}
+    "name": "stripe-connect-node",
+    "version": "0.0.1",
+    "description": "A simple Node.js Stripe Connect example using OAuth 2",
+    "private": true,
+    "scripts": {},
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/floatingLomas/stripe-connect-node.git"
+    },
+    "keywords": [
+        "stripe",
+        "stripe-connect",
+        "oauth"
+    ],
+    "author": "Jonathan Lomas <jonathan@floatinglomas.ca>",
+    "bugs": {
+        "url": "https://github.com/floatingLomas/stripe-connect-node/issues"
+    },
+    "homepage": "https://github.com/floatingLomas/stripe-connect-node",
+    "dependencies": {
+        "client-oauth2": "^2.2.0",
+        "express": "^4.14.0",
+        "pug": "^2.0.0-beta6",
+        "stripe": "^4.10.0"
+    },
+    "devDependencies": {}
 }
